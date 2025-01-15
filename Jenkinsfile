@@ -14,7 +14,7 @@ pipeline {
                     ls -la
                     node --version
                     npm --version   
-                    npm install --loglevel=verbose                
+                    npm ci                
                     npm run build
                     ls -la
                 '''
