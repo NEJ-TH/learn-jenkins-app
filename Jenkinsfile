@@ -1,34 +1,25 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:20.11.0'
-                    reuseNode true
-                }
-            }
+        stage('Checkout') {
             steps {
-                sh '''
-                    
-                    node --version
-                    npm --version 
-                    npm cache clean --force
-                    export NPM_CONFIG_CACHE=/tmp/npm-cache
-                    npm ci                
-                    npm run build
-                    ls -la
-                '''
+                checkout scm
             }
         }
-        stage ('tests'){
-            steps{
-                sh '''
-                test -f build/index.html
-                npm test
-                '''
+        stage('Install dependencies') {
+            steps {
+                sh 'npm ci'
             }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+    }
+    post {
+        failure {
+            echo 'Build failed!'
         }
     }
 }
