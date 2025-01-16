@@ -39,10 +39,11 @@ pipeline
             '''
             }
         }
-        post {
-            always {
-                junit 'tests-result/Junit.xml'
-            }
+    }
+    post {
+        always {
+            junit 'tests-result/Junit.xml'
         }
     }
+    
 }
