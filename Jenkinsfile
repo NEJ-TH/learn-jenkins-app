@@ -15,8 +15,7 @@ pipeline
             steps {
                 sh '''
                 node --version
-                npm --version 
-                
+                npm --version                
                 export NPM_CONFIG_CACHE=/tmp/npm-cache
                 npm ci 
                 npm run build
@@ -38,6 +37,11 @@ pipeline
             test -f build/index.html
             npm test
             '''
+            }
+        }
+        post {
+            slaways {
+                junit 'test-result/Junit.xml'
             }
         }
     }
