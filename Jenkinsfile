@@ -16,9 +16,7 @@ pipeline
                 sh '''
                 node --version
                 npm --version 
-                npm cache clean --force
-                export NPM_CONFIG_CACHE=/tmp/npm-cache
-                npm ci 
+                 
                 npm run build
                 ls -la
                 '''
