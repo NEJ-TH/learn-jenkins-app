@@ -41,7 +41,7 @@ pipeline
         }
         post {
             slaways {
-                junit 'test-result/Junit.xml'
+                junit 'tests-result/Junit.xml'
             }
         }
     }
