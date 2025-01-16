@@ -40,7 +40,7 @@ pipeline
             }
         }
         post {
-            slaways {
+            always {
                 junit 'tests-result/Junit.xml'
             }
         }
